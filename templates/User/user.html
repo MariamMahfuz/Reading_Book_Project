@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+{% for user in users %}
+<div class="task-table">
+    <div class="task-title">
+        <a href="{% url 'profile' primarykey=user.id %}">{{ user.name }}</a>
+    </div>
+    
+    <div class="actions-btn">
+        <a class="btn task-view" href="{% url 'profile' primarykey=user.id %}">View Profile</a>
+        <a class="btn btn-danger" href="{% url 'delete_user' primarykey=user.id %}">Delete</a>
+        
+    </div>
+
+</div>
+{% endfor %}
+{% endblock %}
