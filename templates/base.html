@@ -17,7 +17,12 @@
           <a href="{% url 'user_list' %}">Our Writer</a>
          </div>
           <ul>
-           <li><a href="{% url 'add_user' %}">Add New</a></li>                    
+          {% if request.user.is_authenticated %}
+           <li><a href="{% url 'add_user' %}">Add New</a></li> 
+           <li><a href="{% url 'App_Login:login' %}">Log Out</a></li>   
+           {% else %}  
+           <li><a href="{% url 'App_Login:login' %}">Log in</a></li> 
+           {% endif %}                                
           </ul>
         </nav>
 <div class="main-body">

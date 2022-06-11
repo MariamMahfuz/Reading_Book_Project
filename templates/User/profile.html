@@ -18,5 +18,7 @@
         </div>
       
 </div>
+{% if request.user.is_authentcated %}
 <a class=" btn edit-task btn-info ml-5" href="{% url 'edit_user' primarykey=user_details.id %}"> Edit Profile</a>   
+{% endif %}
 {% endblock %}

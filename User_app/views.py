@@ -3,8 +3,10 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+# @login_required
 def user_list(request):
     users=User_list.objects.all()
     context={
@@ -25,6 +27,7 @@ def user_Profile(request,primarykey):
     }
     return render(request,'User/profile.html',context)
 
+@login_required
 def Edit_User(request,primarykey):
     user_details=User_list.objects.get(pk=primarykey)   
     edit_user_form =  UserForm(instance=user_details)
@@ -38,6 +41,7 @@ def Edit_User(request,primarykey):
     }
     return render(request,'User/edit_user.html',context)
 
+@login_required
 def Add_User(request):
     form = UserForm()
     if request.method == 'POST':
@@ -52,6 +56,7 @@ def Add_User(request):
     }
     return render(request,'User/add_user.html',context)
 
+@login_required
 def Delete_profile(request, primarykey):
     user_details=User_list.objects.get(pk=primarykey).delete()
     context = {
